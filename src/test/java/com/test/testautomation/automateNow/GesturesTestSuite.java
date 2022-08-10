@@ -4,10 +4,12 @@ import com.test.testautomation.config.WebDriverConfig;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.apache.commons.io.FileUtils;
+import java.io.File;
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GesturesTestSuite {
@@ -27,7 +29,7 @@ public class GesturesTestSuite {
     }
 
     @Test
-    public void testFormPositive() {
+    public void testGestures() throws IOException {
         //Given & When
         driver.get(url);
         driver.manage().window().maximize();
@@ -47,6 +49,9 @@ public class GesturesTestSuite {
 
         moveMap.moveToElement(map, 0, 0).clickAndHold()
                 .moveByOffset(1000, 50).release().build().perform();
+
+        File screen = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screen, new File("C:\\Users\\rutko\\Documents\\PROJECTS\\testingScreens\\map.png"));
 
         fullScreen.click();
 
