@@ -32,8 +32,8 @@ public class FormFieldTestSuite {
     @Test
     public void testFormPositive() {
         //Given & When
-
         driver.get(url);
+        driver.manage().window().maximize();
         driver.findElement(By.id("cookie_action_close_header")).click();
         driver.findElement(By.partialLinkText("Form Fields")).click();
 
