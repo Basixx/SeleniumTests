@@ -30,7 +30,7 @@ public class FormFieldTestSuite {
     }
 
     @Test
-    public void testFormPositive(){
+    public void testFormPositive() {
         //Given & When
 
         driver.get(url);
