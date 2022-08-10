@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
-import java.time.Duration;
 
 public class FormFieldTestSuite {
 
@@ -19,7 +18,7 @@ public class FormFieldTestSuite {
     private static final String MESSAGE = "Hi, my name is Barbara. It is nice to meet you. Best Regards!";
 
     @BeforeAll
-    private static void prepare(){
+    private static void prepare() {
         driver = WebDriverConfig.getDriver(WebDriverConfig.FIREFOX);
         url = "https://automatenow.io/sandbox-automation-testing-practice-website/";
     }
@@ -59,7 +58,7 @@ public class FormFieldTestSuite {
         WebElement submit = driver.findElement(By.xpath("(//p[@class=\"contact-submit\"]/button[@type= 'submit'])[1]"));
 
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", submit);
-        waitForElement(submit);
+        ElementsWait.waitForElement(driver, submit);
         submit.click();
 
         //Then
@@ -70,13 +69,5 @@ public class FormFieldTestSuite {
         assertTrue(driver.getPageSource().contains("Octal"));
         assertTrue(driver.getPageSource().contains(EMAIL));
         assertTrue(driver.getPageSource().contains(MESSAGE));
-    }
-
-    public void waitForElement(WebElement webElement) {
-        Wait<WebDriver> wait = new FluentWait<>(driver)
-                .withTimeout(Duration.ofSeconds(3))
-                .pollingEvery(Duration.ofSeconds(1))
-                .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

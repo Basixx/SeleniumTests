@@ -16,7 +16,7 @@ public class TablesTestSuite {
     private static String url;
 
     @BeforeAll
-    private static void prepare(){
+    private static void prepare() {
         driver = WebDriverConfig.getDriver(WebDriverConfig.FIREFOX);
         url = "https://automatenow.io/sandbox-automation-testing-practice-website/";
     }
